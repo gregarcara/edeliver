@@ -78,7 +78,7 @@ run() {
   elif [[ "$NODE_ACTION" = ping ]] && [[ "$RELEASE_CMD" = "mix" ]]; then
     NODE_ACTION="ping"
   elif [[ "$NODE_ACTION" = migrations ]] && [[ "$RELEASE_CMD" = "mix" ]]; then
-    for UMBRELLA_APP in $(ls -1 ${APP}/apps | grep -v '$APP'); do
+    for UMBRELLA_APP in $(ls -1 ${APP}/.. | grep -v '$APP'); do
       NODE_ACTION="${_rpc_command} Elixir.Edeliver run_command '${_rpc_open_brackets}list_pending_migrations, \"$UMBRELLA_APP\", \"$ECTO_REPOSITORY\"${_rpc_close_brackets}.';"
     done
   elif [[ "$NODE_ACTION" = migrations ]] && [[ "$RELEASE_CMD" != "mix" ]]; then
